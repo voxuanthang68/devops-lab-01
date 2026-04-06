@@ -1,0 +1,95 @@
+# devops-lab-01
+
+Repo mẫu dùng để demo khi giảng dạy các nội dung:
+- Git Flow cơ bản: `feature/* -> develop -> main`
+- Pull Request và code review
+- Unit testing với Jest
+- CI bằng GitHub Actions
+- CI fail sẽ block merge
+
+## Cấu trúc repo
+
+```text
+src/calculator.js
+tests/calculator.test.js
+.github/workflows/ci.yml
+package.json
+```
+
+## Cách chạy local
+
+```bash
+npm install
+npm test
+```
+
+## Flow demo gợi ý
+
+1. Checkout `develop`
+2. Tạo branch `feature/add-calculator-tests`
+3. Viết hoặc chỉnh test
+4. Commit và push branch
+5. Mở PR vào `develop`
+6. Xem CI chạy tự động
+7. Cố tình sửa code để test fail
+8. Push lại và quan sát CI block merge
+9. Fix bug và đợi CI pass
+
+## Nội dung nên dùng khi demo
+
+### Tạo branch
+```bash
+git checkout -b develop
+git pull origin develop
+git checkout -b feature/add-calculator-tests
+```
+
+### Commit thêm test
+```bash
+git add .
+git commit -m "test: add calculator unit tests"
+```
+
+### Commit thêm workflow
+```bash
+git add .
+git commit -m "ci: add GitHub Actions workflow for pull requests"
+```
+
+### Commit tạo bug để minh hoạ CI fail
+```bash
+git commit -am "feat: simulate bug to show CI blocking merge"
+```
+
+### Commit fix bug
+```bash
+git commit -am "fix: restore correct calculator logic"
+```
+
+### Tiêu đề PR
+```text
+test: add calculator unit tests and CI workflow
+```
+
+### Mô tả PR
+```md
+## Summary
+- add unit tests for calculator
+- add GitHub Actions CI workflow
+- demonstrate CI checks on pull requests
+
+## What changed
+- added tests for add(), subtract(), multiply(), divide()
+- added divide-by-zero edge case
+- added workflow at `.github/workflows/ci.yml`
+
+## How to verify
+- run `npm test` locally
+- open a PR into `develop`
+- confirm CI passes
+```
+
+## Mẹo demo
+- Chuẩn bị sẵn 1 PR pass và 1 PR fail nếu mạng chậm.
+- Khi muốn tạo bug nhanh, sửa hàm `add()` thành `return a + b + 1;`.
+- Khi muốn fix nhanh, đổi lại `return a + b;`.
